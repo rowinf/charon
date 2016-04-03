@@ -26,3 +26,17 @@ Any kind of data related to the purchase should be stored here in case something
 2. simulated - just a test of the account and the webdriver flow
 3. log - webdriver events that occurred during the purchase
 3. url - the starting url?
+
+=== Interacting with the AT HOP website
+Renewing a monthly pass goes like this
+1. Navigate to https://at.govt.nz/athop
+2. Click login button (dodge the session storage crap)
+3. Submit login form
+4. Click Top up my card button
+5. Click Buy a pass link
+6. Select HOP Monthly
+7. (optional) choose start and end zone (default Zone A for both)
+8. Click Apply button
+9. If card details are saved, it will be filled out automatically and you can click purchase
+10. (optional) Click Pending transactions link
+11. (optional) Verify that the table contains a transaction with transaction type "Buy travel pass"
