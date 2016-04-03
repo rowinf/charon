@@ -40,3 +40,9 @@ Renewing a monthly pass goes like this
 9. If card details are saved, it will be filled out automatically and you can click purchase
 10. (optional) Click Pending transactions link
 11. (optional) Verify that the table contains a transaction with transaction type "Buy travel pass"
+
+=== Todo
+* Introduce Sidekiq and Redis for complete automation
+* deploy to Heroku
+* Check time remaining on current monthly pass
+* Verify the pending transaction before and after purchasing
