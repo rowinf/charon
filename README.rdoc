@@ -1,28 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== Purpose
+This project is for automating my monthly pass renewal from the AT HOP website.
 
-Things you may want to cover:
+1. It's a pain to do, have to login and click all the right buttons, it isn't obvious
+2. There's no way to automate it like the auto top up feature
+3. I can automate it using Selenium WebDriver
 
-* Ruby version
+=== Risks
+Since it's an expensive operation ($140/month), I'll want to be notified of any successful or failed purchases.
 
-* System dependencies
+I'll also need to store my AT HOP credentials in the database. This is also risky, encryption is necessary.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Records  of any purchase should be kept, and any failures should be made apparent with enough time left on the monthly pass to prevent it from lapsing

@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'sprockets', '>=3.0.0.beta'
 gem 'sprockets-es6'
+gem 'yard'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
