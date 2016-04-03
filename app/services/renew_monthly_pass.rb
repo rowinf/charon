@@ -10,9 +10,15 @@ class RenewMonthlyPass < BaseService
 
     login_myat(email, password)
 
-    buy_pass
+    follow_buying_process
+
+    buy_pass!
 
     close_successfully
+
+    purchase_record.save
+
+    purchase_record
   end
 
   private
@@ -28,28 +34,33 @@ class RenewMonthlyPass < BaseService
     @form_inputs ||= driver.find_elements(:tag_name, 'input')
   end
 
-  def buy_pass
+  def follow_buying_process
     click_element(:id, 'top_up')
     click_element(:link_text, 'Buy a pass')
     click_element(:id, 'ProductId')
     click_element(:id, 'applyBtn')
-    # buy the thing
-    # click_element(:id, 'purchase-button')
   end
 
-  def click_element(type, identifier)
+  def buy_pass!
+    # buy the thing
+    click_element(:id, 'purchase-button', simulated?)
+  end
+
+  def click_element(type, identifier, simulated=false)
     begin
       element = driver.find_element(type, identifier)
       raise ElementNotFoundError if element.blank?
       logger.debug "Found element by #{type} -> #{identifier}"
-      element.click
+      element.click unless simulated? == true
     rescue ElementNotFoundError => ex
       logger.error "Element not found"
+      purchase_record.failed!
     end
   end
 
   def close_successfully
     logger.info "Finished Successfully"
+    purchase_record.succeeded!
     close
   end
 
@@ -62,14 +73,22 @@ class RenewMonthlyPass < BaseService
   end
 
   def url
-    "https://at.govt.nz/bus-train-ferry/at-hop-card/my-at-hop-account/"
+    purchase_record.url
   end
 
   def email
-    options.fetch(:email)
+    purchase_record.email
   end
 
   def password
-    options.fetch(:password)
+    purchase_record.password
+  end
+
+  def purchase_record
+    @purchase_record ||= options.fetch(:purchase_record)
+  end
+
+  def simulated?
+    purchase_record.simulated?
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403055516) do
+ActiveRecord::Schema.define(version: 20160403085016) do
 
   create_table "at_hop_accounts", force: :cascade do |t|
     t.string "email"
@@ -24,5 +24,14 @@ ActiveRecord::Schema.define(version: 20160403055516) do
   end
 
   add_index "at_hop_accounts", ["email"], name: "index_at_hop_accounts_on_email", unique: true
+
+  create_table "purchase_records", force: :cascade do |t|
+    t.integer  "at_hop_account_id"
+    t.string   "state"
+    t.boolean  "simulated",         default: false
+    t.text     "url"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
 
 end

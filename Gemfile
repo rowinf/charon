@@ -9,6 +9,7 @@ gem 'selenium-webdriver'
 gem 'yard'
 gem 'attr_encrypted', '~> 3.0.0'
 gem 'puma'
+gem 'state_machines'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

@@ -13,3 +13,16 @@ Since it's an expensive operation ($140/month), I'll want to be notified of any 
 I'll also need to store my AT HOP credentials in the database. This is also risky, encryption is necessary.
 
 Records  of any purchase should be kept, and any failures should be made apparent with enough time left on the monthly pass to prevent it from lapsing
+
+=== Models
+An AT HOP account has the data needed to access the AT HOP website.
+1. email
+2. password
+3. run_on_day - the day of the month it should renew its monthly pass
+
+A purchase record is associated with an account, it should record what happened when we tried to buy something.
+Any kind of data related to the purchase should be stored here in case something goes wrong.
+1. state - queued, success, failure
+2. simulated - just a test of the account and the webdriver flow
+3. log - webdriver events that occurred during the purchase
+3. url - the starting url?
