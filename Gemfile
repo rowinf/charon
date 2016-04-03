@@ -2,7 +2,13 @@ source 'https://rubygems.org'
 
 ruby "2.2.4"
 
+# keep this at the top
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'selenium-webdriver'
+gem 'yard'
+gem 'attr_encrypted', '~> 3.0.0'
+gem 'puma'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -15,7 +21,6 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'sprockets', '>=3.0.0.beta'
 gem 'sprockets-es6'
-gem 'yard'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -28,9 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

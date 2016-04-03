@@ -1,6 +1,6 @@
 require "selenium-webdriver"
 
-class AtHopPage < BaseService
+class RenewMonthlyPass < BaseService
 
   ElementNotFoundError = Class.new(StandardError)
 
