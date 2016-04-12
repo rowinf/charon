@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160403085016) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "at_hop_accounts", force: :cascade do |t|
     t.string "email"
     t.string "password"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160403085016) do
     t.text   "encrypted_password_iv"
   end
 
-  add_index "at_hop_accounts", ["email"], name: "index_at_hop_accounts_on_email", unique: true
+  add_index "at_hop_accounts", ["email"], name: "index_at_hop_accounts_on_email", unique: true, using: :btree
 
   create_table "purchase_records", force: :cascade do |t|
     t.integer  "at_hop_account_id"

@@ -8,8 +8,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'selenium-webdriver'
 gem 'yard'
 gem 'attr_encrypted', '~> 3.0.0'
-gem 'puma'
 gem 'state_machines'
+gem 'pg', '~> 0.18.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
