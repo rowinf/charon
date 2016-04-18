@@ -34,6 +34,7 @@ class RenewMonthlyPass < BaseService
     @form_inputs ||= driver.find_elements(:tag_name, 'input')
   end
 
+  # TODO: separate these into page objects
   def follow_buying_process
     click_element(:id, 'top_up')
     click_element(:link_text, 'Buy a pass')
