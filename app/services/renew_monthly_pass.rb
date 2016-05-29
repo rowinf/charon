@@ -1,11 +1,17 @@
 require "selenium-webdriver"
 
 class RenewMonthlyPass < BaseService
+  attr_reader :purchase_record
 
   ElementNotFoundError = Class.new(StandardError)
 
   def call(options={})
-    @options = options
+    @purchase_record = options.fetch(:at_hop_account) {
+      AtHopAccount.find_by_email!('irwin.shell@gmail.com')
+    }.purchase_records.new(
+      simulated: options.fetch(:simulated) { true }
+    }
+
     logger.debug "calling at hop page..."
 
     login_myat(email, password)
@@ -25,6 +31,7 @@ class RenewMonthlyPass < BaseService
 
   def login_myat(account_email, account_password)
     driver.navigate.to url
+    click_element(:link_text, 'Log in')
     form_inputs.find{|el| el['name'].include? 'UsernameTextBox'}.send_keys(account_email)
     form_inputs.find{|el| el['name'].include? 'PasswordTextBox'}.send_keys(account_password)
     form_inputs.find{|el| el['name'].include? 'SubmitButton'}.click
@@ -52,7 +59,7 @@ class RenewMonthlyPass < BaseService
       element = driver.find_element(type, identifier)
       raise ElementNotFoundError if element.blank?
       logger.debug "Found element by #{type} -> #{identifier}"
-      element.click unless simulated? == true
+      element.click unless simulated == true
     rescue ElementNotFoundError => ex
       logger.error "Element not found"
       purchase_record.failed!
@@ -74,7 +81,7 @@ class RenewMonthlyPass < BaseService
   end
 
   def url
-    purchase_record.url
+    'https://at.govt.nz/athop'
   end
 
   def email
@@ -83,10 +90,6 @@ class RenewMonthlyPass < BaseService
 
   def password
     purchase_record.password
-  end
-
-  def purchase_record
-    @purchase_record ||= options.fetch(:purchase_record)
   end
 
   def simulated?
